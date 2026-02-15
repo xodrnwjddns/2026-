@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024</title>
+    <link href="master.css" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"/>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Work</a>
+        </nav>
+    </div>
+</header>
+
+    <div class="wrap">
+
+        <div class="box01">
+            <div class="hero">
+             <h1>복잡한 업무 흐름을 사용 가능한 UI로</h1>
+              <p class="sub">Enterprise UI/UX Designer</p>
+            </div>
+
+             <!-- 내려가기 버튼 --> 
+              <div class="scroll-down">
+                <span></span>
+              </div>
+        </div>
+
+        <div class="box02">
+              <div class="CardInner">
+
+                <div class="Card">
+                 <a href="sub01.html" class="thumb">
+                  <img src="img/im01.png" class="img-default" alt="im01">
+                  <img src="img/im01-hover.png" class="img-hover" alt="im01">
+                </a>
+                 <div class="card-text">
+                  <p class="title">경영 시스템 리뉴얼 WEB</p>
+                  <span class="year">2026</span>
+                 </div>
+                </div>
+                
+                <div class="Card">
+                 <a href="sub02.html" class="thumb">
+                  <img src="img/im02.png" class="img-default" alt="im01">
+                  <img src="img/im02-hover.png" class="img-hover" alt="im01">
+                </a>
+                 <div class="card-text">
+                  <p class="title">출장 기반 업소 관리 APP (KOS-G)</p>
+                  <span class="year">2026</span>
+                 </div>
+                </div>
+
+                <div class="Card">
+                 <a href="sub03.html" class="thumb">
+                  <img src="img/im03.png" class="img-default" alt="im01">
+                  <img src="img/im03-hover.png" class="img-hover" alt="im01">
+                </a>
+                 <div class="card-text">
+                  <p class="title">신탁자·저작물 온라인 접수 및 정산 관리 포털 리뉴얼 (Web · App)</p>
+                  <span class="year">2026</span>
+                 </div>
+                </div>
+
+              </div>
+            </div>
+
+    </div> 
+     
+    <button class="scroll-top">↑</button>
+
+
+    
+   <footer class="footer">
+  <div class="footer-inner">
+
+    <div class="footer-logo">
+      <a href="index.html">PORTFOLIO</a>
+    </div>
+
+    <div class="footer-info">
+      <p>Enterprise UI/UX Designer © 2026 All Rights Reserved.</p>
+    </div>
+
+    <div class="footer-contact">
+      <a href="mailto:your@email.com">dlwjddns1213@naver.com</a>
+    </div>
+
+  </div>
+</footer>
+ 
+
+
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".box01",
+    start: "top top",
+    end: "+=25%",   // 🔥 50% → 25% 로 줄임
+    scrub: true,
+    pin: true,
+    pinSpacing: true
+  }
+});
+
+// 🔹 box01 콘텐츠 사라짐
+tl.to(".box01", {
+  opacity: 0,
+  ease: "none"
+}, 0);
+
+// 🔹 box02는 pin 시작과 동시에 등장
+tl.to(".box02", {
+  opacity: 1,
+  y: 0,
+  ease: "none"
+}, 0);
+
+// 🔹 pin 종료 시점에 box02를 흐름으로 복귀
+ScrollTrigger.create({
+  trigger: ".box01",
+  start: "bottom top",
+  onEnter: () => {
+    gsap.set(".box02", {
+      position: "relative",
+      top: "auto"
+    });
+  }
+});
+</script>
+
+<script>
+document.querySelector(".scroll-down").addEventListener("click", () => {
+  window.scrollTo({
+    top: document.querySelector(".box02").offsetTop,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
+const scrollBtn = document.querySelector(".scroll-top");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        scrollBtn.style.opacity = "1";
+        scrollBtn.style.pointerEvents = "auto";
+    } else {
+        scrollBtn.style.opacity = "0";
+        scrollBtn.style.pointerEvents = "none";
+    }
+});
+
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+</body>
+</html>
