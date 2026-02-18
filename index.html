@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2024</title>
+    <title>2026</title>
     <link href="master.css" rel="stylesheet">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"/>
 </head>
@@ -21,6 +21,7 @@
     <div class="wrap">
 
         <div class="box01">
+          <div class="line-bg"></div>
             <div class="hero">
              <h1>복잡한 업무 흐름을 사용 가능한 UI로</h1>
               <p class="sub">Enterprise UI/UX Designer</p>
@@ -167,6 +168,47 @@ scrollBtn.addEventListener("click", () => {
     top: 0,
     behavior: "smooth"
   });
+});
+</script>
+
+<script>
+const lineWrap = document.querySelector(".line-bg");
+
+for (let i = 0; i < 12; i++) {
+  const line = document.createElement("span");
+  line.classList.add("line");
+
+  const top = Math.random() * 100;
+  const delay = Math.random() * 3;
+  const duration = 3 + Math.random() * 4;
+
+  line.style.top = `${top}%`;
+  line.style.height = `${Math.random() * 1.5 + 0.5}px`;
+
+  lineWrap.appendChild(line);
+
+  // 🔥 핵심: 좌 → 우 흐르는 애니메이션
+  gsap.fromTo(line,
+  { x: "-60%" },
+  {
+    x: "160%",
+    duration,
+    delay,
+    repeat: -1,
+    ease: "none"
+  }
+);
+}
+
+// 🔥 스크롤 시 라인 자연스럽게 사라짐
+gsap.to(".line-bg", {
+  opacity: 0,
+  scrollTrigger: {
+    trigger: ".box02",
+    start: "top bottom",
+    end: "top center",
+    scrub: true
+  }
 });
 </script>
 
