@@ -12,10 +12,10 @@ body {
   font-family: "Pretendard Variable", Pretendard, sans-serif;
   background: #212121;
   color: #fff;
-   height:auto;
+  height:auto;
   overflow-x:hidden;
-  padding-top:70px;
-   height: 100%;
+  height: 100%;
+  margin:0;
 }
 
 /* =========================
@@ -36,8 +36,9 @@ body {
 }
 
 .header-inner{
-    width:1280px;
-    margin:0 auto;
+  max-width: 1220px;
+  width: 90%;
+  margin:0 auto;
 }
 
 .nav{
@@ -60,29 +61,35 @@ body {
 
 /* 히어로 중앙 정렬 */
 .hero {
-  text-align: center;
+text-align:center;
+  max-width:900px;   /* 🔥 줄폭 제한 */
+  width:90%;
+  margin:0 auto;
+  transform:none;    /* 🔥 translate 제거 */
 }
 
 .hero h1 {
-  font-size: 48px;
-  font-weight: 700;
-  letter-spacing: -1px;
+  font-size: clamp(28px, 4.5vw, 52px);
+  line-height:1.3;
+  letter-spacing:-0.02em;
+  word-break:keep-all;
   color: #fff;
 }
 
 .hero .sub {
   margin-top: 24px;
-  font-size: 18px;
+  font-size: clamp(14px, 2.5vw, 18px);
   font-weight: 500;
   opacity: 0.6;
   color: #fff;
 }
 
 .scroll-down {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2;
 }
 
 .scroll-down span {
@@ -102,16 +109,14 @@ body {
 }
 
 .box01{
-    width: 100%;
-    height: calc(100vh - 70px);
-    background-color: #212121;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    background-position: center;
-    position: relative; 
-    background-size: cover;
-    border: 0px solid red;
+position: relative;
+  width: 100%;
+  min-height: 100svh;   /* 🔥 iOS 대응 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top:70px;     /* header 보정 */
+  background:#212121;
 }
 
 .line {
@@ -128,21 +133,6 @@ body {
   opacity: 0.6;
 }
 
-/* 여러 개의 라인 */
-.line {
-  position: absolute;
-  top: 0;
-  left: -30%;
-  width: 30%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0.35),
-    transparent
-  );
-  opacity: 0.6;
-}
 
 .bg{
     width: 100%;
@@ -191,15 +181,14 @@ body {
 }
 
 .CardInner{
-  width: 1220px;          /* 🔥 고정폭 (574*2 + gap 60 + 여유) */
-  padding: 120px 0;       /* 좌우 패딩 제거 */
-  box-sizing: border-box;
-  margin: 0 auto;         /* 🔥 가운데 정렬 */
-  display: grid;
-  grid-template-columns: 574px 574px; /* 🔥 고정 컬럼 */
-  gap: 80px 60px;                /* 세로 / 가로 간격 */
+ max-width:1300px;
+  width:92%;
+  margin:0 auto;
+  padding:140px 0;
 
-  align-content: center;       
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:100px 80px;
 }
 
 .Card{
@@ -210,9 +199,10 @@ body {
 }
 
 .Card img {
-  width: 574px;
-  height: 430px;
-  object-fit: cover;
+ width:100%;
+  aspect-ratio:4 / 3;
+  height:auto;
+  object-fit:cover;
   display: block;
 }
 
@@ -290,7 +280,8 @@ body {
 }
 
 .footer-inner{
-  width:1220px;
+  max-width: 1220px;
+  width: 90%;
   margin:0 auto;
   display:flex;
   justify-content:space-between;
@@ -315,6 +306,47 @@ body {
   font-size:14px;
   color:#fff;
   text-decoration:none;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+@media (max-width:900px){
+  .CardInner{
+    grid-template-columns:1fr;
+    gap:60px;
+  }
+}
+
+@media (max-width:768px){
+
+  .footer-inner{
+    flex-direction:column;
+    gap:20px;
+    align-items:flex-start;
+  }
+
+  .scroll-top{
+    right:20px;
+    bottom:20px;
+    width:48px;
+    height:48px;
+  }
+
+}
+
+
+@media (max-width:768px){
+
+  .sub-content{
+    width:100%;
+    max-width:none;
+    margin:0;
+  }
+
+  .sub-content img{
+    width:100%;
+    border-radius:0;  /* 🔥 모서리 제거 (붙는 느낌 강화) */
+  }
 }
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
@@ -360,8 +392,15 @@ body {
 ========================= */
 
 .inner{
-    width:1200px;
+max-width:1280px;
+    width:100%;
     margin:0 auto;
+}
+
+.next-inner{
+  width:90%;
+  max-width:1280px;   /* 🔥 inner 제한 제거 */
+  margin:0 auto;
 }
 
 /* =========================
@@ -369,12 +408,12 @@ body {
 ========================= */
 
 .sub-hero{
-    padding:120px 0 80px;
+   padding:140px 0 100px;
     text-align:center;
 }
 
 .sub-hero h1{
-    font-size:36px;
+    font-size:clamp(28px, 4vw, 40px);
     font-weight:700;
     letter-spacing:-0.5px;
 }
@@ -391,12 +430,16 @@ body {
 
 .sub-content{
     padding-bottom:120px;
+    max-width:1280px;   /* 🔥 이미지 최대폭 제한 */
+    margin:0 auto;
 }
 
 .sub-content img{
-    width:100%;
+   width:100%;
+    height:auto;
     display:block;
-    border-radius:8px; /* 선택 */
+    margin:0 auto;   /* 혹시 모를 정렬 보정 */
+    border-radius:8px;
 }
 
 .sub-next{
@@ -411,12 +454,13 @@ body {
 }
 
 .next-grid{
-    display:flex;
+   display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
     gap:40px;
 }
 
 .next-card{
-    width:50%;
+    width:100%;
     text-decoration:none;
     color:#fff;
     transition:transform 0.4s ease;
@@ -455,5 +499,18 @@ body {
 .card-year{
     font-size:14px;
     opacity:0.6;
+}
+
+@media (max-width:768px){
+
+  .sub-content{
+    width:100%;
+    padding:0;   /* 혹시 남아있는 여백 제거 */
+  }
+
+  .sub-content img{
+    border-radius:0;   /* 🔥 모바일에서 라운드 제거 */
+  }
+
 }
 
