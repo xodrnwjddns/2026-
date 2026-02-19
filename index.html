@@ -179,7 +179,7 @@ for (let i = 0; i < 12; i++) {
   line.classList.add("line");
 
   const top = Math.random() * 100;
-  const delay = Math.random() * 3;
+  const delay = 0;
   const duration = 3 + Math.random() * 4;
 
   line.style.top = `${top}%`;
@@ -188,16 +188,17 @@ for (let i = 0; i < 12; i++) {
   lineWrap.appendChild(line);
 
   // 🔥 핵심: 좌 → 우 흐르는 애니메이션
-  gsap.fromTo(line,
-  { x: "-60%" },
+gsap.fromTo(line,
+  { x: "0vw" },   // 🔥 화면 왼쪽 밖에서 시작
   {
-    x: "160%",
+    x: "100vw",      // 🔥 화면 오른쪽 끝까지
     duration,
     delay,
     repeat: -1,
     ease: "none"
   }
 );
+
 }
 
 // 🔥 스크롤 시 라인 자연스럽게 사라짐
